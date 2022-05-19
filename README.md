@@ -22,6 +22,7 @@ Currently only supports Windows and Linux. **If someone can build and send MacOS
  - Meier&ndash;Zupan [Generalized square knots and homotopy 4-spheres](https://arxiv.org/abs/1904.08527)
  - Scharlemann [Proposed Property 2R counterexamples examined](http://dx.doi.org/10.1215/ijm/1498032031)
  - Gompf&ndash;Scharlemann&ndash;Thompson: [Fibered knots and potential counterexamples to the Property 2R and Slice-Ribbon Conjectures](http://dx.doi.org/10.2140/gt.2010.14.2305)
+  
 ## Installation
 
 Install pyacgt with either pip or directly from github.
@@ -35,4 +36,7 @@ or
 ```bash
 python -m pip install -U pyacgt
 ```
-    
+## TODO
+
+  - [x] Add `options` as a dict to `makeACMEinput`. 
+  - [ ] May want to Objectify the interface. 

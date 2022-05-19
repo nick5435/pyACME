@@ -22,6 +22,7 @@ setup(
     version='0.1.0',
     description='Python interface to ACME',
     long_description=readme(),
+    long_description_content_type='text/markdown',
     url='https://github.com/nick5435/pyacgt',
     author='Nick Meyer',
     author_email='nmeyer5435@gmail.com',
