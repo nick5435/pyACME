@@ -1,0 +1,2 @@
+include pyACME/bin/*
+include requirements.txt
