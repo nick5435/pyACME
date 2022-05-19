@@ -5,7 +5,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-A Python 3.8+ interface for Havas and Ramsay's ACME package.
+A Python 3.7+ interface for Havas and Ramsay's ACME package.
 Currently only supports Windows and Linux. **If someone can build and send MacOS binaries for ACME, I can implement this!**
 
 ## License
