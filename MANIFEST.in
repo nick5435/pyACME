@@ -1,2 +1,2 @@
-include pyACME/bin/*
+include pyacgt/bin/*
 include requirements.txt

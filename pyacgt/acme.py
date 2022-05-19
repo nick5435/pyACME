@@ -1,14 +1,13 @@
-# import os
 import subprocess as sub
-import platform, shutil
-from typing import List, Set, Dict, Tuple, Union, Any, Text
+from typing import List, Tuple, Union, Text
+from util import cmd_exists
+# from typing_extensions import typing as T
+# import typing_extensions as TE
 
 MyText = Union[bytes, Text]
 Words = Union[Text, List[MyText], List[List[MyText]]]
 
 ACME_EXE = 'acme'
-
-
 
 def makeACMEinput(
     gens: List[str],
@@ -125,6 +124,14 @@ def runACMEinput(
     Union[Tuple[sub.Popen, Tuple[bytes], str],str]
         Either a tuple (sub.Popen, Tuple[bytes], str) or a single str.
     """
+    try:
+        assert cmd_exists(ACME_EXE)
+    except AssertionError as e:
+        e.args = tuple(
+            list(e.args)
+            + ["Could not find ACME on system path."]
+        )
+        raise
     acme = sub.Popen(ACME_EXE, stdout=sub.PIPE, stdin=sub.PIPE, stderr=sub.STDOUT)
     stdout = acme.communicate(input=str.encode(template, "utf-8"))
     output = stdout[0].decode()
