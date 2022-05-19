@@ -1,12 +1,13 @@
 
 # pyacgt
-[![PyPI Versions Badge](https://img.shields.io/pypi/pyversions/pyacgt?style=for-the-badge)](https://pypi.org/project/pyacgt/)
-[![PyPI Wheel Badge](https://img.shields.io/pypi/wheel/pyacgt?style=for-the-badge)](https://pypi.org/project/pyacgt/)
+![PyPI](https://img.shields.io/pypi/v/pyacgt?style=for-the-badge)
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![PyPI Wheel Badge](https://img.shields.io/pypi/wheel/pyacgt?style=for-the-badge)
+
+![License](https://img.shields.io/github/license/nick5435/pyacgt?style=for-the-badge)
 
 A Python 3.7+ interface for Havas and Ramsay's ACME package.
-Currently only supports Windows and Linux. **If someone can build and send MacOS binaries for ACME, I can implement this!**
+Currently only supports Windows and Linux. **If someone can build the MacOS binaries for ACME, I can get the Mac port working for this!**
 
 ## License
 
@@ -39,4 +40,4 @@ python -m pip install -U pyacgt
 ## TODO
 
   - [x] Add `options` as a dict to `makeACMEinput`. 
-  - [ ] May want to Objectify the interface. 
+  - [ ] May want to "Objectify" the interface. (I.e. make an `ACME` class similar to what Sage does with GAP.)
