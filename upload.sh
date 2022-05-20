@@ -4,7 +4,7 @@ CSTRING="Autocommit at $(date '+%Y-%m-%d %H:%M:%S')"
 git add .
 git commit -m "\"$CSTRING\""
 git push origin
-python -m build --no-isolation 
+python -m build -n
 twine upload --skip-existing -r testpypi dist/*
 twine upload --skip-existing dist/*
-rm -rf ./dist/
+rm -rf ./dist ./build ./*.egg_info

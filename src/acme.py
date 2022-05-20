@@ -1,14 +1,24 @@
 import subprocess as sub
-from typing import List, Tuple, Union, Text
-from util import cmd_exists
+from typing import List, Tuple, Union, Text, Any
+from .util import cmd_exists, Words
+import sys, os, platform
 
 # from typing_extensions import typing as T
 # import typing_extensions as TE
 
-MyText = Union[bytes, Text]
-Words = Union[Text, List[MyText], List[List[MyText]]]
+__all__ = ["makeACMEInput", "runACMEinput"]
+__ACME_EXTENSION__ = ".exe" if platform.system() == "Windows" else ""
+__ACME_EXE__ = os.path.join(sys.prefix, "bin/acme" + __ACME_EXTENSION__)
 
-ACME_EXE = "acme"
+
+def __dir__() -> List[Text]:
+    return __all__
+
+
+def __getattr__(name: str) -> Any:
+    if name not in __all__:
+        raise AttributeError(name)
+    return globals()[name]
 
 
 def makeACMEinput(
@@ -127,11 +137,11 @@ def runACMEinput(
         Either a tuple (sub.Popen, Tuple[bytes], str) or a single str.
     """
     try:
-        assert cmd_exists(ACME_EXE)
+        assert cmd_exists(__ACME_EXE__)
     except AssertionError as e:
         e.args = tuple(list(e.args) + ["Could not find ACME on system path."])
         raise
-    acme = sub.Popen(ACME_EXE, stdout=sub.PIPE, stdin=sub.PIPE, stderr=sub.STDOUT)
+    acme = sub.Popen(__ACME_EXE__, stdout=sub.PIPE, stdin=sub.PIPE, stderr=sub.STDOUT)
     stdout = acme.communicate(input=str.encode(template, "utf-8"))
     output = stdout[0].decode()
     if returnAll:

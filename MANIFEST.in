@@ -1,2 +1,4 @@
-include pyacgt/bin/*
+include src/bin/acme
+include src/bin/acme.exe
 include requirements.txt
+include LICENSE
