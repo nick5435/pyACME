@@ -16,12 +16,13 @@ def readme() -> str:
     with open(r"README.md", "r+") as f:
         return f.read()
 
+README=readme()
 
 setup(
     name="pyacgt",
     version="0.1.2",
     description="Python interface to ACME",
-    long_description=readme(),
+    long_description=str(README),
     long_description_content_type="text/markdown",
     url=r"https://github.com/nick5435/pyacgt",
     author="Nick Meyer",
@@ -31,12 +32,9 @@ setup(
     package_dir={'pyacgt': 'src'},
     zip_safe=False,
     install_requires=[
-        'typing>=3.7.0, <4;python_version <="3.8" ',
+        'typing>=3.7.0, <4; python_version <="3.8" ',
         'typing_extensions>=4.0.0, <5; python_version <= "3.11"',
     ],
-    extras_require={
-        "dev": [],
-    },
     python_requires=">=3.7.0",
     data_files=[("bin", [ACME_EXE])],
     keywords="mathematics group-theory andrews-curtis",
@@ -56,6 +54,6 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Education",
         "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-    ],
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"
+    ]
 )
