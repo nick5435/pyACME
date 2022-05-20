@@ -1,5 +1,6 @@
 #!/bin/bash
 rm -rf ./dist/
+source activate base
 CSTRING="Autocommit at $(date '+%Y-%m-%d %H:%M:%S')"
 git add .
 git commit -m "\"$CSTRING\""
@@ -8,3 +9,4 @@ python -m build
 twine upload --skip-existing -r testpypi dist/*
 twine upload --skip-existing dist/*
 rm -rf ./dist ./build ./*.egg_info
+source deactivate
