@@ -7,8 +7,14 @@ import sys, os, platform
 # import typing_extensions as TE
 
 __all__ = ["makeACMEInput", "runACMEinput"]
-__ACME_EXTENSION__ = ".exe" if platform.system() == "Windows" else ""
+if platform.system() == "Windows":
+    __ACME_EXTENSION__ = "_win.exe"
+elif platform.system() == "Linux":
+    __ACME_EXTENSION__ = "_linux"
+elif platform.system() == "Darwin":
+    __ACME_EXTENSION__ = "_osx"
 __ACME_EXE__ = os.path.join(sys.prefix, "bin/acme" + __ACME_EXTENSION__)
+# sep=os.linesep
 
 
 def __dir__() -> List[Text]:
@@ -115,7 +121,7 @@ def makeACMEinput(
     elif type(footerText) == str:
         lines.append(f"Text: {footerText};")
     lines.append("Bye;")
-    return "\r\n".join(lines)
+    return os.linesep.join(lines)
 
 
 def runACMEinput(
