@@ -57,28 +57,42 @@ def makeACMEinput(
         relators in `gens` for the group under test
     prog: str
         what program from ACME to run. Valid options are `prog8`, `plan9`, `rev10`, `temp11`, `duodec`,
+        Default: "Prog8"
     equiv: bool
-        if equiv is true, then all equivalent presentations due to relator cycling and inversion are added as root nodes to the search tree before any AC-moves are made. Default:False
+        if equiv is true, then all equivalent presentations due to relator cycling and inversion are added as root
+        nodes to the search tree before any AC-moves are made.
+        Default:False
     stat: bool
-        If stat is true, printout details of the tree as they're processed. Default: False
+        If stat is true, printout details of the tree as they"re processed.
+        Default: False
     param: bool
-        Dump parameters to output. Default: True
+        Dump parameters to output.
+        Default: True
     asIs: bool
-        before any commands run, the presentation is passed through a "massaging routine", if asIs is false, then we freely and cyclically reduce the presentation and sort the relators by shortlex. Default:True
+        before any commands run, the presentation is passed through a ``massaging routine'',
+        if asIs is false, then we freely and cyclically reduce the presentation and sort the relators by shortlex.
+        Default: True
     mess: int
-        set the interval between progress messages. Setting this to zero turns off progress messages. Default: 0.
+        set the interval between progress messages. Setting this to zero turns off progress messages.
+        Default: 0
     cullMode: int
         See ACME documentation.
+        Default: 2
     clen: int
         ACME documentation.
+        Default: 0
     dumpMode: int
         See ACME documentation.
+        Default: 1
     dlen: int
         See ACME documentation.
+        Default: 0
     termMode: int
         See ACME documentation.
+        Default: 1
     tlen: int
         See ACME documentation.
+        Default: 0
     headerText: Union[str,List[str]]
         Add one or more note(s) before the output of the program. Useful for logging parameters.
     footerText: Union[str,List[str]]
@@ -94,12 +108,13 @@ def makeACMEinput(
     except AssertionError as e:
         e.args = tuple(
             list(e.args)
-            + ["Program must be one of 'prog8', 'plan9', 'rev10', 'temp11', 'duodec'"]
+            + ['Program must be one of "prog8", "plan9", "rev10", "temp11", "duodec"']
         )
         raise
     lines = []
-    lines.append(f'Gr: {", ".join(gens)};')
-    lines.append(f'Rel: {", ".join(relators)};')
+    lines.append("")
+    lines.append(f"Gr: {''.join(gens)};")
+    lines.append(f"Rel: {', '.join(relators)};")
     lines.append("Mess: 1;" if mess else "Mess: 0;")
     lines.append("Stat: 1;" if stat else "Stat: 0;")
     lines.append("Equiv: 1;" if equiv else "Equiv: 0;")
