@@ -22,7 +22,7 @@ def squareKnotPres(p: int, q: int) -> Tuple[List[str], List[str]]:
     Parameters
     ----------
     p,q: int
-        meridional slope parameters for $$\mu_{p/q}$$.
+        meridional slope parameters for $$\\mu_{p/q}$$.
 
     Return
     ------
@@ -30,12 +30,12 @@ def squareKnotPres(p: int, q: int) -> Tuple[List[str], List[str]]:
         returns the generators and relators for $$G_{p/q}$$.
     """
     if q == 2 * p + 1:
-        return (["a", "b"], ["abaBAB", "a" * (p + 1) + "B" * p])
+        return ["a", "b"], ["abaBAB", "a" * (p + 1) + "B" * p]
     elif p == 2 and q % 4 == 1:
         n = int((q - 1) / 4)
-        return (["a", "b"], ["abaBAB", "aaBB" * n + "a"])
+        return ["a", "b"], ["abaBAB", "aaBB" * n + "a"]
     elif p == 2 and q % 4 == 3:
         n = int((q - 3) / 4)
-        return (["a", "b"], ["abaBAB", "aaBB" * (n + 1) + "b"])
+        return ["a", "b"], ["abaBAB", "aaBB" * (n + 1) + "b"]
     else:
         raise NotImplementedError(f"The case {p}/{q} is not yet implemented")
