@@ -1,18 +1,22 @@
 import subprocess as sub
 from typing import List, Tuple, Union, Text, Any
-from .util import cmd_exists, Words
-import sys, os, platform
+from .util import cmd_exists
+import sys
+import os
+import platform
 
 # from typing_extensions import typing as T
 # import typing_extensions as TE
 
-__all__ = ["makeACMEInput", "runACMEinput"]
+__all__ = ["makeACMEinput", "runACMEinput", "__ACME_EXE__"]
 if platform.system() == "Windows":
     __ACME_EXTENSION__ = "_win.exe"
 elif platform.system() == "Linux":
     __ACME_EXTENSION__ = "_linux"
 elif platform.system() == "Darwin":
     __ACME_EXTENSION__ = "_osx"
+else:
+    raise RuntimeError(f"Unsupported platform: {platform.system()}")
 __ACME_EXE__ = os.path.join(sys.prefix, "bin/acme" + __ACME_EXTENSION__)
 # sep=os.linesep
 
@@ -56,10 +60,19 @@ def makeACMEinput(
     relators: List[str]
         relators in `gens` for the group under test
     prog: str
+<<<<<<< HEAD
+        what program from ACME to run. Valid options are
+        `prog8`, `plan9`, `rev10`, `temp11`, `duodec`,
+        Default: "Prog8"
+    equiv: bool
+        if equiv is true, then all equivalent presentations due to relator
+        cycling and inversion are added as root
+=======
         what program from ACME to run. Valid options are `prog8`, `plan9`, `rev10`, `temp11`, `duodec`,
         Default: "Prog8"
     equiv: bool
         if equiv is true, then all equivalent presentations due to relator cycling and inversion are added as root
+>>>>>>> main
         nodes to the search tree before any AC-moves are made.
         Default:False
     stat: bool
@@ -69,11 +82,21 @@ def makeACMEinput(
         Dump parameters to output.
         Default: True
     asIs: bool
+<<<<<<< HEAD
+        before any commands run, the presentation is passed through
+        a ``massaging routine'',if asIs is false, then we freely and
+        cyclically reduce the presentation and sort the relators by shortlex.
+        Default: True
+    mess: int
+        set the interval between progress messages.
+        Setting this to zero turns off progress messages.
+=======
         before any commands run, the presentation is passed through a ``massaging routine'',
         if asIs is false, then we freely and cyclically reduce the presentation and sort the relators by shortlex.
         Default: True
     mess: int
         set the interval between progress messages. Setting this to zero turns off progress messages.
+>>>>>>> main
         Default: 0
     cullMode: int
         See ACME documentation.
@@ -94,9 +117,11 @@ def makeACMEinput(
         See ACME documentation.
         Default: 0
     headerText: Union[str,List[str]]
-        Add one or more note(s) before the output of the program. Useful for logging parameters.
+        Add one or more note(s) before the output of the program.
+        Useful for logging parameters.
     footerText: Union[str,List[str]]
-        Add one or more note(s) after the output of the program. Useful for logging parameters.
+        Add one or more note(s) after the output of the program.
+        Useful for logging parameters.
 
     Return
     ------
@@ -123,17 +148,17 @@ def makeACMEinput(
     lines.append(f"Term: {termMode},{tlen};" if termMode == 2 else f"Term: {termMode};")
     lines.append(f"Dump: {dumpMode},{dlen};" if dumpMode == 2 else f"Dump: {dumpMode};")
     lines.append("Text: ;")
-    if type(headerText) == list and len(headerText) > 0:
+    if isinstance(headerText, list) and len(headerText) > 0:
         lines += [f"Text: {line};" for line in headerText]
-    elif type(headerText) == str:
+    elif isinstance(headerText, str):
         lines.append(f"Text: {headerText};")
     lines.append("Param: 1;" if param else "Param: 0;")
     lines.append("Text: ;")
     lines.append(f"{prog};")
     lines.append("Text: ;")
-    if type(footerText) == list and len(footerText) > 0:
+    if isinstance(footerText, list) and len(footerText) > 0:
         lines += [f"Text: {line};" for line in footerText]
-    elif type(footerText) == str:
+    elif isinstance(footerText, str):
         lines.append(f"Text: {footerText};")
     lines.append("Bye;")
     return os.linesep.join(lines)
@@ -150,7 +175,8 @@ def runACMEinput(
     template : str
         acme code template (input string) for some group under test.
     returnAll: bool
-        whether or not to return all variables (with `returnAll==True`) or just the output (`returnAll==False`, this is the default behavior)
+        whether or not to return all variables (with `returnAll==True`)
+        or just the output (`returnAll==False`, this is the default behavior)
 
     Return
     ------

@@ -1,5 +1,5 @@
 import shutil
-from typing import List, Tuple, Union, Text, Any
+from typing import List, Union, Text, Any
 
 FilePath = str
 Words = Union[Text, List[Text], List[List[Text]]]
@@ -18,7 +18,7 @@ def __getattr__(name: str) -> Any:
 
 def cmd_exists(cmd: FilePath) -> bool:
     """
-    Checks whether or not a desired command exists.
+    Checks if a desired command exists.
 
     Parameters
     ----------
