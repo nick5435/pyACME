@@ -60,12 +60,19 @@ def makeACMEinput(
     relators: List[str]
         relators in `gens` for the group under test
     prog: str
+<<<<<<< HEAD
         what program from ACME to run. Valid options are
         `prog8`, `plan9`, `rev10`, `temp11`, `duodec`,
         Default: "Prog8"
     equiv: bool
         if equiv is true, then all equivalent presentations due to relator
         cycling and inversion are added as root
+=======
+        what program from ACME to run. Valid options are `prog8`, `plan9`, `rev10`, `temp11`, `duodec`,
+        Default: "Prog8"
+    equiv: bool
+        if equiv is true, then all equivalent presentations due to relator cycling and inversion are added as root
+>>>>>>> main
         nodes to the search tree before any AC-moves are made.
         Default:False
     stat: bool
@@ -75,6 +82,7 @@ def makeACMEinput(
         Dump parameters to output.
         Default: True
     asIs: bool
+<<<<<<< HEAD
         before any commands run, the presentation is passed through
         a ``massaging routine'',if asIs is false, then we freely and
         cyclically reduce the presentation and sort the relators by shortlex.
@@ -82,6 +90,13 @@ def makeACMEinput(
     mess: int
         set the interval between progress messages.
         Setting this to zero turns off progress messages.
+=======
+        before any commands run, the presentation is passed through a ``massaging routine'',
+        if asIs is false, then we freely and cyclically reduce the presentation and sort the relators by shortlex.
+        Default: True
+    mess: int
+        set the interval between progress messages. Setting this to zero turns off progress messages.
+>>>>>>> main
         Default: 0
     cullMode: int
         See ACME documentation.
